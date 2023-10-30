@@ -1,0 +1,17 @@
+.pagination {
+  display: flex;
+  align-items: center;
+}
+
+.page {
+  padding: 5px;
+  color: teal;
+}
+
+.pagination button {
+  height: 20px;
+  color: teal;
+  background-color: white;
+  border: 1px solid teal;
+}
+
