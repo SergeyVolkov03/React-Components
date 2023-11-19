@@ -1,10 +1,15 @@
-import { ChangeEvent, FormEvent, useContext, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import './input.css';
-import { CustomContext } from '../../context';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { setSearch } from '../../store/reducers/searchSlice';
 
 export function Input() {
-  const { searchText, setSearchText } = useContext(CustomContext);
+  const searchText = useSelector(
+    (state: RootState) => state.searchReducer.search
+  );
   const [inputValue, setInputValue] = useState(searchText);
+  const dispatch = useDispatch();
 
   function onChange(event: ChangeEvent<HTMLInputElement>): void {
     setInputValue(event.currentTarget.value);
@@ -12,9 +17,7 @@ export function Input() {
 
   function onSubmit(event: FormEvent<HTMLButtonElement>): void {
     event.preventDefault();
-    setSearchText(inputValue.trim());
-    console.log(inputValue);
-    localStorage.setItem('name', inputValue.trim());
+    dispatch(setSearch(inputValue));
   }
 
   return (

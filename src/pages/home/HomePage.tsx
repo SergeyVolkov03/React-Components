@@ -1,16 +1,23 @@
-import { useState, MouseEvent, useContext, useEffect } from 'react';
+import { useState, MouseEvent, useEffect } from 'react';
 import { Post } from '../../components/posts-list-item/PostsListItem';
 import { Input } from '../../components/input/Input';
 import { HeroList } from '../../types/types';
 import { Pagination } from '../../components/pagination/Pagination';
 import './home.css';
 import { Link, Outlet, useNavigate, useSearchParams } from 'react-router-dom';
-import { CustomContext } from '../../context';
+import { useGetPostsQuery } from '../../services/postApi';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 export function HomePage() {
-  const { data, page, searchText } = useContext(CustomContext);
   const [isOpened, setIsOpened] = useState(false);
+  const page = useSelector((state: RootState) => state.pageReducer.page);
+  const searchText = useSelector(
+    (state: RootState) => state.searchReducer.search
+  );
+  const { data, isFetching } = useGetPostsQuery({ page, searchText });
   const navigate = useNavigate();
+
   const [, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -40,10 +47,10 @@ export function HomePage() {
         <Input />
         <div className="content">
           <div className="posts-list">
-            {!data ? (
+            {isFetching ? (
               <p className="loading">loading...</p>
             ) : (
-              data.results.map((hero: HeroList) => {
+              data?.results.map((hero: HeroList) => {
                 const id = hero.url?.split('/')[5];
                 return (
                   <Link className="post-link" key={id} to={`herous/${id}`}>
