@@ -1,5 +1,7 @@
+"use client"
+
 import { ChangeEvent, FormEvent, useState } from 'react';
-import './input.css';
+// import styles from './input.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { setSearch } from '../../store/reducers/searchSlice';
@@ -21,7 +23,7 @@ export function Input() {
   }
 
   return (
-    <form className="form">
+    <form className='form'>
       <input
         placeholder="enter a name"
         onChange={onChange}

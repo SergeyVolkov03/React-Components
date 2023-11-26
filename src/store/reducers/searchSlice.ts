@@ -5,7 +5,8 @@ type SearchState = {
 };
 
 const initialState: SearchState = {
-  search: localStorage.getItem('name') || '',
+  // search: localStorage.getItem('name') || '',
+  search: '',
 };
 
 export const searchSlice = createSlice({
