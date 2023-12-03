@@ -1,18 +1,14 @@
-import pageReducer from './reducers/pageSlice';
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { postApi } from '../services/postApi';
-import searchReducer from './reducers/searchSlice';
+// import pageReducer from './reducers/pageSlice';
+// import { combineReducers, configureStore } from '@reduxjs/toolkit';
+// import searchReducer from './reducers/searchSlice';
 
-const rootReducer = combineReducers({
-  pageReducer,
-  searchReducer,
-  [postApi.reducerPath]: postApi.reducer,
-});
+// const rootReducer = combineReducers({
+//   pageReducer,
+//   searchReducer,
+// });
 
-export const store = configureStore({
-  reducer: rootReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(postApi.middleware),
-});
+// export const store = configureStore({
+//   reducer: rootReducer,
+// });
 
-export type RootState = ReturnType<typeof rootReducer>;
+// export type RootState = ReturnType<typeof rootReducer>;

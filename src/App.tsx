@@ -1,15 +1,17 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import { HomePage } from './pages/home/HomePage';
 import { NotFoundPage } from './pages/not-found/NotFoundPage';
-import { PostDetail } from './components/post-detail/PostDetail';
+import { UncontrolledForm } from './pages/uncontrolled-form/UncontrolledForm';
+import { ControlledForm } from './pages/controlled-form/ControlledForm';
+import { Home } from './pages/home/Home';
 
 export function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage />}>
-          <Route path="herous/:id" element={<PostDetail />} />
+        <Route path="/" element={<Home />}>
+          <Route path="/uncontrolled-form" element={<UncontrolledForm />} />
+          <Route path="/controlled-form" element={<ControlledForm />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
