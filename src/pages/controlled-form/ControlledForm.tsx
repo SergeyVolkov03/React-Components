@@ -3,18 +3,29 @@ import { User } from '../../types/types';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from '../../schema/schema';
 import './form.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { addUser } from '../../store/reducers/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 export function ControlledForm() {
+  const countries = useSelector(
+    (state: RootState) => state.countryReducer.countries
+  );
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
     reset,
   } = useForm<User>({ resolver: yupResolver(schema) });
 
   const onSubmit = (data: User) => {
-    console.log(data);
+    dispatch(addUser(data));
     reset();
+    navigate('/');
   };
 
   return (
@@ -67,8 +78,14 @@ export function ControlledForm() {
       <div className="field">
         <label>Country:</label>
         <input list="countries" {...register('country')} />
+        <datalist id="countries">
+          {countries.map((country) => (
+            <option key={country} value={country} />
+          ))}
+        </datalist>
       </div>
-      <input type="submit" disabled={isValid} />
+
+      <input type="submit" />
     </form>
   );
 }

@@ -1,5 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
 import './home.css';
+import { UserList } from '../../components/user-list/UserList';
 
 export function Home() {
   return (
@@ -9,6 +10,7 @@ export function Home() {
         <Link to="uncontrolled-form">Uncontrolled Form</Link>
         <Link to="controlled-form">Controlled Form</Link>
       </div>
+      <UserList />
       <Outlet />
     </>
   );
