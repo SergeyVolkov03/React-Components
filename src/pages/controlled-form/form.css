@@ -1,0 +1,13 @@
+.field {
+  height: 50px;
+}
+
+.field label {
+  padding-right: 10px;
+}
+
+.field p {
+  color: red;
+  padding: 5px 0px;
+  margin: 0px;
+}
