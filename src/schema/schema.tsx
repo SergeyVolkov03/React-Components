@@ -4,9 +4,15 @@ export const schema = yup.object().shape({
   name: yup
     .string()
     .min(2)
-    .max(8)
+    .max(15)
     .required('Name is required')
-    .matches(/^[A-Z][a-z]+$/, 'The first letter should be uppercase'),
-  email: yup.string().email().required('E-mail is required'),
-  age: yup.number().min(8).max(32).required('Age is required'),
+    .matches(/^[A-Z][a-z]+$/, 'the one first letter should be uppercase'),
+  email: yup.string().email().required('e-mail is required'),
+  age: yup
+    .number()
+    .min(16)
+    .max(90)
+    .integer()
+    .positive()
+    .required('age is required'),
 });

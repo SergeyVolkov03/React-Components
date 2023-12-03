@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { User } from '../../types/types';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from '../../schema/schema';
+import './form.css';
 
 export function ControlledForm() {
   const {
@@ -18,17 +19,23 @@ export function ControlledForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label>Name</label>
-      <input {...register('name')} required />
-      <p>{errors.name?.message}</p>
+      <div className="field">
+        <label>Name</label>
+        <input {...register('name')} />
+        <p className="error">{errors.name?.message}</p>
+      </div>
 
-      <label>Age</label>
-      <input {...register('age')} />
-      <p>{errors.age?.message}</p>
+      <div className="field">
+        <label>Age</label>
+        <input {...register('age')} />
+        <p>{errors.age?.message}</p>
+      </div>
 
-      <label>E-mail</label>
-      <input {...register('email')} />
-      <p>{errors.email?.message}</p>
+      <div className="field">
+        <label>E-mail</label>
+        <input {...register('email')} />
+        <p>{errors.email?.message}</p>
+      </div>
 
       <input type="submit" />
     </form>
