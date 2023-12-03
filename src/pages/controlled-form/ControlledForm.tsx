@@ -8,7 +8,7 @@ export function ControlledForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     reset,
   } = useForm<User>({ resolver: yupResolver(schema) });
 
@@ -37,7 +37,38 @@ export function ControlledForm() {
         <p>{errors.email?.message}</p>
       </div>
 
-      <input type="submit" />
+      <div className="field">
+        <label>Password</label>
+        <input {...register('password')} />
+        <p>{errors.password?.message}</p>
+      </div>
+
+      <div className="field">
+        <label>Confirm Password</label>
+        <input {...register('confirmPassword')} />
+        <p>{errors.confirmPassword?.message}</p>
+      </div>
+
+      <div className="field">
+        <label>Gender</label>
+        <select {...register('gender')}>
+          <option value={'male'}>Male</option>
+          <option value={'female'}>Female</option>
+        </select>
+        <p>{errors.gender?.message}</p>
+      </div>
+
+      <div className="field">
+        <label htmlFor="checkbox">Accept T&C</label>
+        <input type="checkbox" {...register('accept')} />
+        <p>{errors.accept?.message}</p>
+      </div>
+
+      <div className="field">
+        <label>Country:</label>
+        <input list="countries" {...register('country')} />
+      </div>
+      <input type="submit" disabled={isValid} />
     </form>
   );
 }

@@ -1,9 +1,9 @@
-import pageReducer from './reducers/pageSlice';
+import countrySlice from './reducers/countrySlice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import searchReducer from './reducers/searchSlice';
+import searchReducer from './reducers/userSlice';
 
 const rootReducer = combineReducers({
-  pageReducer,
+  countrySlice,
   searchReducer,
 });
 
